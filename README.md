@@ -62,11 +62,7 @@ python app.py
    
 ## Architectural diagram
 
-![Architectural Diagram](./static/ArchitecturalDiagram/architectural_diagram.png)
-
-## Architectural diagram
-
-![Architectural Diagram](./static/ArchitecturalDiagram/architectural_diagram.png)
+![Architectural Diagram](./static/ArchitecturalDiagram/architectural_image.png)
 
 ## Usage
 

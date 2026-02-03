@@ -39,7 +39,7 @@ db = SQLAlchemy(app)
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 # --- GEMINI SETUP ---
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyDJNMs88CBMrCDKwDhsw2JzcqO9CrjWY_U")
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 if not GEMINI_API_KEY:
     logger.error("GEMINI_API_KEY not found! Please set it in .env file")
     sys.exit(1)

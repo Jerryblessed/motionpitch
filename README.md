@@ -55,13 +55,16 @@ python app.py
 
 ## Getting Your API Key
 
+1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
+2. Create a new API key
+3. Copy the key to your `.env` file
+4. Hackthon testing team could use AIzaSyDJNMs88CBMrCDKwDhsw2JzcqO9CrjWY_U
+   
 ## Architectural diagram
 
 ![Architectural Diagram](./static/ArchitecturalDiagram/architectural_diagram.png)
 
-1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
-2. Create a new API key
-3. Copy the key to your `.env` file
+
 
 ## Usage
 

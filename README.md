@@ -64,8 +64,6 @@ python app.py
 
 ![Architectural Diagram](./static/ArchitecturalDiagram/architectural_diagram.png)
 
-
-
 ## Usage
 
 1. Enter a topic for your presentation

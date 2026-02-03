@@ -1,0 +1,9 @@
+Flask
+Flask-SQLAlchemy
+Flask-SocketIO
+Werkzeug
+google-genai
+Pillow
+pydantic
+python-socketio
+python-engineio

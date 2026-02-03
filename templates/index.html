@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotionPitch | Gemini 3 Ultra</title>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <div class="nav">
+        <div class="logo">MotionPitch</div>
+        <div class="auth-box">
+            {% if user %} 
+                <span>👋 {{ user.name }}</span> 
+                <a href="/logout">Logout</a>
+            {% else %} 
+                <span style="color:#94a3b8">Guest ({{ 15 - guest_usage }} left)</span> 
+                <a href="#" onclick="openModal('loginModal')">Login</a> 
+                <a href="#" onclick="openModal('registerModal')">Register</a> 
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="main-container">
+        <h1 style="font-size: 3.5rem; margin-bottom: 10px;">
+            Cinematic <span style="color:#c084fc">Agentic</span> Slides
+        </h1>
+        <p style="color:#94a3b8; margin-bottom: 40px;">
+            Gemini 3 Pro (Thinking) • Veo 3.1 • Context Caching • File Search
+        </p>
+
+        <div class="input-card">
+            <label>Topic</label>
+            <input type="text" id="topic" placeholder="e.g. 'SpaceX Mission to Mars'">
+            
+            <div class="row">
+                <div style="flex:1">
+                    <label>URL Context (Optional)</label>
+                    <input type="text" id="url_link" placeholder="https://...">
+                </div>
+                <div style="flex:1">
+                    <label>PDF Upload (Optional)</label>
+                    <input type="file" id="pdf_file" style="padding: 12px;" accept=".pdf">
+                </div>
+            </div>
+
+            <select id="slides">
+                <option value="1">1 Slide</option>
+                <option value="3">3 Slides</option>
+                <option value="5">5 Slides</option>
+            </select>
+
+            <div class="toggle-container">
+                <input type="checkbox" id="enableVideo">
+                <div>
+                    <strong>Enable Veo 3.1 Cinematic Mode</strong><br>
+                    <small style="color:#94a3b8">Generates 4K Video for Slide 1. Adds ~60s wait.</small>
+                </div>
+            </div>
+
+            <button class="btn-primary" onclick="generate()">✨ Generate Presentation</button>
+            <div id="logWindow" class="log-window"></div>
+        </div>
+
+        {% if user and presentations %}
+        <div class="grid">
+            {% for p in presentations %}
+            <a href="/viewer/{{ p.id }}" class="card">
+                <h3>{{ p.title }}</h3>
+                <small>{{ p.created_at.strftime('%Y-%m-%d') }}</small>
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- MODALS -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button class="btn-primary">Login</button>
+            </form>
+            <button onclick="closeModal('loginModal')" style="background:none;border:none;color:#94a3b8;margin-top:10px;cursor:pointer;">Close</button>
+        </div>
+    </div>
+    
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <h2>Register</h2>
+            <form action="/register" method="POST">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button class="btn-primary">Sign Up</button>
+            </form>
+            <button onclick="closeModal('registerModal')" style="background:none;border:none;color:#94a3b8;margin-top:10px;cursor:pointer;">Close</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

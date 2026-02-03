@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ pres.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/viewer.css') }}">
+</head>
+<body>
+    <a href="/" class="home-btn">← Back</a>
+    
+    {% for slide in pres.slides_data %}
+    <div class="slide {% if loop.first %}active{% endif %}" id="slide-{{ loop.index0 }}">
+        <div class="content">
+            <h1>{{ slide.title }}</h1>
+            <div>{{ slide.content | safe }}</div>
+        </div>
+        <div class="media">
+            {% if slide.media_type == 'video' %}
+                <div class="badge">🎥 Veo 3.1</div>
+                <video src="{{ slide.media_url }}" autoplay loop muted playsinline controls></video>
+            {% elif slide.media_type == 'image' %}
+                <div class="badge">🎨 Gemini 3 Image</div>
+                <img src="{{ slide.media_url }}" alt="Slide image">
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    
+    <div class="nav">
+        <button onclick="prev()">Previous</button>
+        <button onclick="next()">Next</button>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/viewer.js') }}"></script>
+</body>
+</html>

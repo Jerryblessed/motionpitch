@@ -55,13 +55,13 @@ python app.py
 
 ## Getting Your API Key
 
-## Architectural diagram
-
-![Architectural Diagram](./static/ArchitecturalDiagram/architectural_diagram.png)
-
 1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
 2. Create a new API key
 3. Copy the key to your `.env` file
+
+## Architectural diagram
+
+![Architectural Diagram](./static/ArchitecturalDiagram/architectural_diagram.png)
 
 ## Usage
 
